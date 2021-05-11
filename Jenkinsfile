@@ -16,5 +16,23 @@ pipeline {
                 sh "mvn package"
             }
         }
+
+        stage('Build Docker image'){
+            steps {
+                sh 'docker build -t  manchabla/maven-docker-jenkins .'
+            }
+        }
+
+        stage('Docker deploy'){
+           steps {
+                sh 'docker run -itd -p  8081:8080 manchabla/maven-docker-jenkins'
+           }
+        }
+
+        stage('Archving') {
+            steps {
+                archiveArtifacts '**/target/*.jar'
+            }
+        }
     }
 }
