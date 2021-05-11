@@ -25,7 +25,7 @@ pipeline {
 
         stage('Docker deploy'){
            steps {
-                sh 'docker run -itd -p  8081:8080 manchabla/maven-docker-jenkins'
+                sh 'docker run -itd -p  3000:3001 manchabla/maven-docker-jenkins'
            }
         }
 
